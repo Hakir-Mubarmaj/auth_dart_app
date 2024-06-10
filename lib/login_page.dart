@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'profile_page.dart';
+import 'home1.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProfilePage(data: data['data']),
+              builder: (context) => Home1(data: data['data']),
             ),
           );
         } else {
