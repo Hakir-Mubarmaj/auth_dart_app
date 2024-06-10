@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         useMaterial3: true,
       ),
-      initialRoute: '/login',
+      initialRoute: '/signup',
       routes: {
         '/login': (BuildContext context) => LoginPage(),
         '/signup': (BuildContext context) => RegistrationPage(),
