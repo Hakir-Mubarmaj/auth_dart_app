@@ -1,7 +1,7 @@
+import 'package:auth_dart_app/home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'login_page.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -38,7 +38,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => LoginPage(),
+              builder: (context) => HomePage(),
             ),
           );
         } else {
@@ -60,41 +60,98 @@ class _RegistrationPageState extends State<RegistrationPage> {
           key: _formKey,
           child: ListView(
             children: [
+              Text(
+                'Welcome to Registration',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-                validator: (value) => value!.isEmpty ? 'Enter email' : null,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter email';
+                  } else if (!value.contains('@')) {
+                    return 'Enter a valid email';
+                  }
+                  return null;
+                },
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
+                ),
                 obscureText: true,
-                validator: (value) => value!.isEmpty ? 'Enter password' : null,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter password';
+                  } else if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: _firstNameController,
-                decoration: InputDecoration(labelText: 'First Name'),
+                decoration: InputDecoration(
+                  labelText: 'First Name',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(),
+                ),
                 validator: (value) => value!.isEmpty ? 'Enter first name' : null,
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: _lastNameController,
-                decoration: InputDecoration(labelText: 'Last Name'),
+                decoration: InputDecoration(
+                  labelText: 'Last Name',
+                  prefixIcon: Icon(Icons.person_outline),
+                  border: OutlineInputBorder(),
+                ),
                 validator: (value) => value!.isEmpty ? 'Enter last name' : null,
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: _mobileController,
-                decoration: InputDecoration(labelText: 'Mobile'),
+                decoration: InputDecoration(
+                  labelText: 'Mobile',
+                  prefixIcon: Icon(Icons.phone),
+                  border: OutlineInputBorder(),
+                ),
                 validator: (value) => value!.isEmpty ? 'Enter mobile number' : null,
               ),
+              SizedBox(height: 10),
               TextFormField(
                 controller: _photoController,
-                decoration: InputDecoration(labelText: 'Photo URL'),
+                decoration: InputDecoration(
+                  labelText: 'Photo URL',
+                  prefixIcon: Icon(Icons.photo),
+                  border: OutlineInputBorder(),
+                ),
                 validator: (value) => value!.isEmpty ? 'Enter photo URL' : null,
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _register,
                 child: Text('Register'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  textStyle: TextStyle(fontSize: 18),
+                ),
               ),
             ],
           ),
